@@ -1,0 +1,67 @@
+{
+  "skill_name": "tldr",
+  "evals": [
+    {
+      "id": 0,
+      "name": "focused-debug-turn",
+      "prompt": "Here is the transcript of a Claude Code session (debug-session.md). Read it, then give me a /tldr.",
+      "expected_output": "Short scaffolded summary. TL;DR names the actual cause (shared module-level StripeClient) and the outcome (fixed, 50 runs green). Preserves the payments/client.py:88 reference. Keeps the shipping/refunds latent-bug note as unverified in Next. Does not re-investigate.",
+      "files": [
+        "fixtures/debug-session.md"
+      ],
+      "assertions": [
+        "Uses the four scaffold headings TL;DR, Did, Found, Next, in that order",
+        "The TL;DR line names the actual root cause (shared module-level client / state leaking between tests), not just the topic",
+        "The TL;DR line states the outcome: fixed and verified over 50 runs",
+        "Preserves at least one clickable file:line reference from the transcript (e.g. payments/client.py:88 or tests/checkout/conftest.py:31)",
+        "Mentions the xdist ordering explanation for why CI caught it and local did not",
+        "Carries the shipping/refunds latent-bug note forward as an open item, and does not state it as confirmed",
+        "Makes no new tool calls beyond reading the transcript file (no grep/test runs against the repo)",
+        "Total length is 15 lines or fewer",
+        "Opens directly with the summary \u2014 no preamble like 'Here is a summary of...'"
+      ]
+    },
+    {
+      "id": 1,
+      "name": "trivial-last-turn-widens",
+      "prompt": "Read trivial-last-turn.md and /tldr it for me",
+      "expected_output": "Scope widens past the trivial final exchange ('I created it in this session') to summarise the streaming-export work. Reports the memory numbers and surfaces the partial-response caveat the frontend doesn't handle.",
+      "files": [
+        "fixtures/trivial-last-turn.md"
+      ],
+      "assertions": [
+        "Uses the four scaffold headings TL;DR, Did, Found, Next, in that order",
+        "Scope widens past the trivial final exchange \u2014 the summary is about the streaming export work, not about whether bench_export.py existed",
+        "The TL;DR line states the outcome with a concrete number (memory dropped to ~84MB, or the 3GB-to-84MB change)",
+        "Reports both the memory and the wall-time improvement",
+        "Surfaces the streaming-error caveat (partial 200 response / frontend does not check the truncation sentinel) as an open item",
+        "Explains the two compounding causes (.all() materialising rows and getvalue() copying the CSV)",
+        "Makes no new tool calls beyond reading the transcript file",
+        "Total length is 15 lines or fewer",
+        "Opens directly with the summary \u2014 no preamble"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "long-session-with-bad-news",
+      "prompt": "read long-session.md then /tldr session",
+      "expected_output": "Session-scale recap organised by workstream (auth / rate limiting). Surfaces the blocked Redis decision, the legacy CSRF + open-redirect gap at api/legacy.py:140, and keeps the clock-skew diagnosis hedged as unconfirmed. Under ~20 lines.",
+      "files": [
+        "fixtures/long-session.md"
+      ],
+      "assertions": [
+        "Uses the four scaffold headings TL;DR, Did, Found, Next, in that order",
+        "Organises the session by workstream (auth vs rate limiting) rather than replaying turn order",
+        "The TL;DR line states both the shipped auth work and that the rate limiter is blocked on a decision",
+        "Surfaces the legacy CSRF / open-redirect gap with its api/legacy.py:140 reference",
+        "States the Redis vs in-process tradeoff concretely enough to decide on (8 workers enforcing independent limits, resets on deploy)",
+        "Keeps the clock-skew diagnosis hedged \u2014 does not present it as confirmed root cause",
+        "Notes that the rate-limit middleware is written but not wired up",
+        "Mentions PR #212 as an open item needing a reviewer",
+        "Makes no new tool calls beyond reading the transcript file",
+        "Total length is 25 lines or fewer",
+        "Does not omit the bad news: blocked decision, unconfirmed diagnosis, and pre-existing security gap all appear"
+      ]
+    }
+  ]
+}
