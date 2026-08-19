@@ -63,3 +63,22 @@ Rewrite fixtures 0 and 2 into domains that share nothing with the skill's exampl
 anti-re-investigation case against a repo with real code to be tempted by; cut the format
 assertions to two; add fixtures for the rolling and empty-Next cases; three runs per
 configuration instead of one.
+
+---
+
+## Note on the duplicated SKILL.md
+
+This repo is also a Claude Code plugin marketplace, so `SKILL.md` exists twice:
+
+- `.claude/skills/tldr/SKILL.md` — makes `/tldr` work for anyone working *in* this repo
+- `plugins/tldr-plugin/skills/tldr/SKILL.md` — what people *install* from the marketplace
+
+Plugins are copied on install and cannot reference files outside their own directory, so
+these have to be real files rather than a symlink. After editing the skill, sync them:
+
+```bash
+cp .claude/skills/tldr/SKILL.md plugins/tldr-plugin/skills/tldr/SKILL.md
+```
+
+and bump `version` in both `.claude-plugin/marketplace.json` and
+`plugins/tldr-plugin/.claude-plugin/plugin.json` — users only get updates when it changes.

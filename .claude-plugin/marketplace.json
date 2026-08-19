@@ -1,0 +1,14 @@
+{
+  "name": "tldr",
+  "owner": {
+    "name": "Victoria Hedlund"
+  },
+  "plugins": [
+    {
+      "name": "tldr-plugin",
+      "source": "./plugins/tldr-plugin",
+      "description": "Adds a /tldr skill that condenses recent session work into a scaffolded summary: TL;DR, Did, Found, Next.",
+      "version": "1.0.0"
+    }
+  ]
+}
