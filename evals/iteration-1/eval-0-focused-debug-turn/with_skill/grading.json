@@ -1,0 +1,55 @@
+{
+  "eval_id": 0,
+  "eval_name": "focused-debug-turn",
+  "configuration": "with_skill",
+  "expectations": [
+    {
+      "text": "Uses the four scaffold headings TL;DR, Did, Found, Next, in that order",
+      "passed": true,
+      "evidence": "Headings TL;DR/Did/Found/Next present in order"
+    },
+    {
+      "text": "The TL;DR line names the actual root cause (shared module-level client / state leaking between tests), not just the topic",
+      "passed": true,
+      "evidence": "TL;DR names the cause: 'shared module-level StripeClient leaking state between tests'"
+    },
+    {
+      "text": "The TL;DR line states the outcome: fixed and verified over 50 runs",
+      "passed": true,
+      "evidence": "TL;DR states '50 consecutive runs pass'"
+    },
+    {
+      "text": "Preserves at least one clickable file:line reference from the transcript (e.g. payments/client.py:88 or tests/checkout/conftest.py:31)",
+      "passed": true,
+      "evidence": "Keeps payments/client.py:88"
+    },
+    {
+      "text": "Mentions the xdist ordering explanation for why CI caught it and local did not",
+      "passed": true,
+      "evidence": "'Only reproduced in CI because -p xdist changes test ordering'"
+    },
+    {
+      "text": "Carries the shipping/refunds latent-bug note forward as an open item, and does not state it as confirmed",
+      "passed": true,
+      "evidence": "Next: 'likely have the same latent bug \u2014 suspected, not verified or tested'"
+    },
+    {
+      "text": "Makes no new tool calls beyond reading the transcript file (no grep/test runs against the repo)",
+      "passed": true,
+      "evidence": "3 tool uses: read skill, read transcript, write output. No repo investigation"
+    },
+    {
+      "text": "Total length is 15 lines or fewer",
+      "passed": true,
+      "evidence": "14 lines"
+    },
+    {
+      "text": "Opens directly with the summary \u2014 no preamble like 'Here is a summary of...'",
+      "passed": true,
+      "evidence": "Opens on the TL;DR line"
+    }
+  ],
+  "passed": 9,
+  "total": 9,
+  "pass_rate": 1.0
+}

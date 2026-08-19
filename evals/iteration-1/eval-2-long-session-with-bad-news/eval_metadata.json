@@ -1,0 +1,18 @@
+{
+  "eval_id": 2,
+  "eval_name": "long-session-with-bad-news",
+  "prompt": "read long-session.md then /tldr session",
+  "assertions": [
+    "Uses the four scaffold headings TL;DR, Did, Found, Next, in that order",
+    "Organises the session by workstream (auth vs rate limiting) rather than replaying turn order",
+    "The TL;DR line states both the shipped auth work and that the rate limiter is blocked on a decision",
+    "Surfaces the legacy CSRF / open-redirect gap with its api/legacy.py:140 reference",
+    "States the Redis vs in-process tradeoff concretely enough to decide on (8 workers enforcing independent limits, resets on deploy)",
+    "Keeps the clock-skew diagnosis hedged \u2014 does not present it as confirmed root cause",
+    "Notes that the rate-limit middleware is written but not wired up",
+    "Mentions PR #212 as an open item needing a reviewer",
+    "Makes no new tool calls beyond reading the transcript file",
+    "Total length is 25 lines or fewer",
+    "Does not omit the bad news: blocked decision, unconfirmed diagnosis, and pre-existing security gap all appear"
+  ]
+}

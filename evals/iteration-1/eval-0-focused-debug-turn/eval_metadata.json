@@ -1,0 +1,16 @@
+{
+  "eval_id": 0,
+  "eval_name": "focused-debug-turn",
+  "prompt": "Here is the transcript of a Claude Code session (debug-session.md). Read it, then give me a /tldr.",
+  "assertions": [
+    "Uses the four scaffold headings TL;DR, Did, Found, Next, in that order",
+    "The TL;DR line names the actual root cause (shared module-level client / state leaking between tests), not just the topic",
+    "The TL;DR line states the outcome: fixed and verified over 50 runs",
+    "Preserves at least one clickable file:line reference from the transcript (e.g. payments/client.py:88 or tests/checkout/conftest.py:31)",
+    "Mentions the xdist ordering explanation for why CI caught it and local did not",
+    "Carries the shipping/refunds latent-bug note forward as an open item, and does not state it as confirmed",
+    "Makes no new tool calls beyond reading the transcript file (no grep/test runs against the repo)",
+    "Total length is 15 lines or fewer",
+    "Opens directly with the summary \u2014 no preamble like 'Here is a summary of...'"
+  ]
+}

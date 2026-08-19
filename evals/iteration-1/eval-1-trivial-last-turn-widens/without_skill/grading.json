@@ -1,0 +1,55 @@
+{
+  "eval_id": 1,
+  "eval_name": "trivial-last-turn-widens",
+  "configuration": "without_skill",
+  "expectations": [
+    {
+      "text": "Uses the four scaffold headings TL;DR, Did, Found, Next, in that order",
+      "passed": false,
+      "evidence": "No scaffold \u2014 a 'tl;dr' sentence plus five ad-hoc bolded labels (Problem/Fix/Verified/Caveat/Last question answered)"
+    },
+    {
+      "text": "Scope widens past the trivial final exchange \u2014 the summary is about the streaming export work, not about whether bench_export.py existed",
+      "passed": true,
+      "evidence": "Correctly widened past the trivial exchange"
+    },
+    {
+      "text": "The TL;DR line states the outcome with a concrete number (memory dropped to ~84MB, or the 3GB-to-84MB change)",
+      "passed": false,
+      "evidence": "tl;dr line is qualitative only: 'Fixed the export endpoint's OOM issue by converting it ... to a streaming response.' Numbers appear later"
+    },
+    {
+      "text": "Reports both the memory and the wall-time improvement",
+      "passed": true,
+      "evidence": "Reports 3140MB\u219284MB and 58.7s\u219241.2s"
+    },
+    {
+      "text": "Surfaces the streaming-error caveat (partial 200 response / frontend does not check the truncation sentinel) as an open item",
+      "passed": true,
+      "evidence": "Caveat flagged, including the unchecked sentinel"
+    },
+    {
+      "text": "Explains the two compounding causes (.all() materialising rows and getvalue() copying the CSV)",
+      "passed": true,
+      "evidence": "Names both .all() and the StringIO buffer"
+    },
+    {
+      "text": "Makes no new tool calls beyond reading the transcript file",
+      "passed": true,
+      "evidence": "2 tool uses"
+    },
+    {
+      "text": "Total length is 15 lines or fewer",
+      "passed": true,
+      "evidence": "7 lines"
+    },
+    {
+      "text": "Opens directly with the summary \u2014 no preamble",
+      "passed": true,
+      "evidence": "No preamble"
+    }
+  ],
+  "passed": 7,
+  "total": 9,
+  "pass_rate": 0.778
+}

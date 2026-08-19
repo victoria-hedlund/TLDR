@@ -1,0 +1,55 @@
+{
+  "eval_id": 0,
+  "eval_name": "focused-debug-turn",
+  "configuration": "without_skill",
+  "expectations": [
+    {
+      "text": "Uses the four scaffold headings TL;DR, Did, Found, Next, in that order",
+      "passed": false,
+      "evidence": "Invented its own shape: Task / Root cause / Failing tests / Fix / Verification / Follow-up"
+    },
+    {
+      "text": "The TL;DR line names the actual root cause (shared module-level client / state leaking between tests), not just the topic",
+      "passed": false,
+      "evidence": "No TL;DR line at all; opens with 'Task: Investigate flaky checkout tests' \u2014 the topic, not the answer. Cause is buried in a later section"
+    },
+    {
+      "text": "The TL;DR line states the outcome: fixed and verified over 50 runs",
+      "passed": false,
+      "evidence": "No bottom-line sentence; the 50-run result sits in a 'Verification' section near the end"
+    },
+    {
+      "text": "Preserves at least one clickable file:line reference from the transcript (e.g. payments/client.py:88 or tests/checkout/conftest.py:31)",
+      "passed": false,
+      "evidence": "No line references anywhere \u2014 names conftest.py and _pending but drops payments/client.py:88"
+    },
+    {
+      "text": "Mentions the xdist ordering explanation for why CI caught it and local did not",
+      "passed": true,
+      "evidence": "Explains the xdist ordering difference"
+    },
+    {
+      "text": "Carries the shipping/refunds latent-bug note forward as an open item, and does not state it as confirmed",
+      "passed": true,
+      "evidence": "Marks the shipping/refunds follow-up 'wasn't verified'"
+    },
+    {
+      "text": "Makes no new tool calls beyond reading the transcript file (no grep/test runs against the repo)",
+      "passed": true,
+      "evidence": "2 tool uses: read transcript, write output"
+    },
+    {
+      "text": "Total length is 15 lines or fewer",
+      "passed": true,
+      "evidence": "15 lines"
+    },
+    {
+      "text": "Opens directly with the summary \u2014 no preamble like 'Here is a summary of...'",
+      "passed": true,
+      "evidence": "No preamble \u2014 starts with a '## /tldr' header"
+    }
+  ],
+  "passed": 5,
+  "total": 9,
+  "pass_rate": 0.556
+}
