@@ -1,8 +1,7 @@
 # /tldr
 
-A Claude skill that condenses recent session work into a fixed scaffold —
-**TL;DR / Did / Found / Next** — so someone who skimmed or stepped away can act
-without scrolling back.
+Cut through Claude's verbal Diarrhea with TLDR - A Claude skill that condenses recent session work into a fixed scaffold —
+**TL;DR / Did / Found / Next** — so you can save your scanning time for what you actual want!
 
 ## Layout
 
